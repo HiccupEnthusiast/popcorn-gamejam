@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxjixd1nkumg2"]
+[gd_scene load_steps=7 format=3 uid="uid://dxjixd1nkumg2"]
 
 [ext_resource type="Script" uid="uid://bsmjpxkcw27ew" path="res://scenes/main.gd" id="1_qy63d"]
 [ext_resource type="Script" uid="uid://bhb74xk58ssv2" path="res://players/player/player.gd" id="2_l8qe7"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://7wu7duhhhx3x" path="res://players/player/camera.gd" id="3_m1504"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8qe7"]
-radius = 18.1108
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyhfs"]
+radius = 18.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qy63d")
@@ -22,6 +25,13 @@ texture = ExtResource("3_ifaiv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Body"]
 shape = SubResource("CircleShape2D_l8qe7")
+
+[node name="InteractionArea" type="Area2D" parent="Player/Body"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Body/InteractionArea"]
+shape = SubResource("CircleShape2D_jyhfs")
 
 [node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_m1504")
