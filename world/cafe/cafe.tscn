@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://c1k8m8iqj1vh8"]
+[gd_scene load_steps=8 format=4 uid="uid://c1k8m8iqj1vh8"]
 
 [ext_resource type="Script" uid="uid://c0bf02vryle73" path="res://world/cafe/cafe.gd" id="1_tmwni"]
 [ext_resource type="Texture2D" uid="uid://8kef4u63d0wd" path="res://test_tileset.png" id="2_mn5dy"]
 [ext_resource type="Texture2D" uid="uid://pp1mmy2wc1ln" path="res://icon.svg" id="3_bdbv1"]
-[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="4_bl80b"]
+[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/transition_tile.tres" id="5_bdbv1"]
+[ext_resource type="Script" uid="uid://ff54y2ntnb07" path="res://world/transition_tile.gd" id="5_mn5dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jdbho"]
 texture = ExtResource("2_mn5dy")
@@ -30,22 +31,28 @@ texture = ExtResource("3_bdbv1")
 
 [node name="TransitionTiles" type="Node" parent="."]
 
-[node name="Outside" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_bl80b")]
-position = Vector2(84, 335)
-collision_layer = 1
-collision_mask = 1
-spawn_point = NodePath("SpawnPoint")
+[node name="Outside" type="Area2D" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point")]
+position = Vector2(78, 335)
+script = ExtResource("5_mn5dy")
+spawn_point = NodePath("Marker2D")
 target_scene_path = "outside"
 target_door = "Cafe"
+metadata/_custom_type_script = "uid://ff54y2ntnb07"
 
-[node name="SpawnPoint" type="Marker2D" parent="TransitionTiles/Outside"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionTiles/Outside"]
+shape = ExtResource("5_bdbv1")
 
-[node name="Bedroom" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_bl80b")]
-position = Vector2(254, 241)
-collision_layer = 1
-collision_mask = 1
+[node name="Marker2D" type="Marker2D" parent="TransitionTiles/Outside"]
+
+[node name="Bedroom" type="Area2D" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point")]
+position = Vector2(258, 240)
+script = ExtResource("5_mn5dy")
 spawn_point = NodePath("Marker2D")
 target_scene_path = "bedroom"
 target_door = "Cafe"
+metadata/_custom_type_script = "uid://ff54y2ntnb07"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionTiles/Bedroom"]
+shape = ExtResource("5_bdbv1")
 
 [node name="Marker2D" type="Marker2D" parent="TransitionTiles/Bedroom"]

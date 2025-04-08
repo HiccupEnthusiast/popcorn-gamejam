@@ -1,18 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0dt11fit4ref"]
+[gd_scene load_steps=3 format=3 uid="uid://d0dt11fit4ref"]
 
-[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="1_kguig"]
+[ext_resource type="Script" uid="uid://ff54y2ntnb07" path="res://world/transition_tile.gd" id="1_kguig"]
+[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/transition_tile.tres" id="2_6aqka"]
 
 [node name="Outside" type="Node2D"]
 
 [node name="TransitionTiles" type="Node" parent="."]
 
-[node name="Cafe" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_kguig")]
-position = Vector2(20, 31)
-collision_layer = 1
-collision_mask = 1
-spawn_point = NodePath("SpawnPoint")
+[node name="Cafe" type="Area2D" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point")]
+position = Vector2(19, 25)
+script = ExtResource("1_kguig")
+spawn_point = NodePath("Marker2D")
 target_scene_path = "cafe"
 target_door = "Outside"
+metadata/_custom_type_script = "uid://ff54y2ntnb07"
 
-[node name="SpawnPoint" type="Marker2D" parent="TransitionTiles/Cafe"]
-position = Vector2(0, 36)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionTiles/Cafe"]
+shape = ExtResource("2_6aqka")
+
+[node name="Marker2D" type="Marker2D" parent="TransitionTiles/Cafe"]
+position = Vector2(38, 2)
