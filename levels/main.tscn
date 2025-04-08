@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxjixd1nkumg2"]
+
+[ext_resource type="Texture2D" uid="uid://pp1mmy2wc1ln" path="res://icon.svg" id="1_2262g"]
+[ext_resource type="Script" uid="uid://bhb74xk58ssv2" path="res://players/player/player.gd" id="2_l8qe7"]
+[ext_resource type="Script" uid="uid://7wu7duhhhx3x" path="res://players/player/camera.gd" id="3_m1504"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8qe7"]
+radius = 72.0069
+
+[node name="Main" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(278, 110)
+texture = ExtResource("1_2262g")
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_l8qe7")
+metadata/_custom_type_script = "uid://bhb74xk58ssv2"
+
+[node name="Body" type="CharacterBody2D" parent="Player"]
+
+[node name="Icon" type="Sprite2D" parent="Player/Body"]
+texture = ExtResource("1_2262g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Body"]
+shape = SubResource("CircleShape2D_l8qe7")
+
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_m1504")
+player = NodePath("../Player")
+metadata/_custom_type_script = "uid://7wu7duhhhx3x"
