@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1k8m8iqj1vh8"]
+
+[ext_resource type="Texture2D" uid="uid://pp1mmy2wc1ln" path="res://icon.svg" id="1_l5asx"]
+[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="3_5trkw"]
+
+[node name="Cafe" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(278, 110)
+texture = ExtResource("1_l5asx")
+
+[node name="TransitionTiles" type="Node" parent="."]
+
+[node name="Outside" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_5trkw")]
+position = Vector2(18, 163)
+spawn_point = NodePath("SpawnPoint")
+target_scene_path = "outside"
+target_door = "Cafe"
+
+[node name="SpawnPoint" type="Marker2D" parent="TransitionTiles/Outside"]
+position = Vector2(-1, 52)
+
+[node name="Bedroom" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_5trkw")]
+position = Vector2(63, 163)
+spawn_point = NodePath("Marker2D")
+target_scene_path = "bedroom"
+target_door = "Cafe"
+
+[node name="Marker2D" type="Marker2D" parent="TransitionTiles/Bedroom"]
+position = Vector2(0, 43)
