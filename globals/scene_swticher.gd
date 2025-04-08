@@ -26,9 +26,9 @@ func __deferred_goto_scene(path: String, spawn_target) -> void:
 		if a != null:
 			Globals.player.body.global_position = a.spawn_point.global_position
 		else:
-			print("Spawn target '%s' selected but it isn't a TransitionTile" % spawn_target)
+			Log.e("Spawn target '%s' selected but it isn't a TransitionTile" % spawn_target)
 	else: 
-		print("Chaging scene with no spawn point")
+		Log.i("Chaging scene with no spawn point")
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
 	scene_changed.emit(spawn_target)

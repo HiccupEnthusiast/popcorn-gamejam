@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneSwticher="*res://globals/scene_swticher.gd"
 Globals="*res://globals/globals.gd"
+Log="*res://globals/log.gd"
 
 [display]
 
