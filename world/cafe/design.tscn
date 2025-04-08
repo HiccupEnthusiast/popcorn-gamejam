@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvotdxblqktb0"]
+
+[ext_resource type="Script" uid="uid://5rohds8ktg5b" path="res://world/cafe/design.gd" id="1_53nhl"]
+
+[node name="Design" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_53nhl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "adasdhaiwdkjawdasd"
+horizontal_alignment = 1

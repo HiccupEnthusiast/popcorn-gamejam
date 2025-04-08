@@ -1,13 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0dt11fit4ref"]
 
-[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="1_ygixk"]
+[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="1_kguig"]
 
 [node name="Outside" type="Node2D"]
 
 [node name="TransitionTiles" type="Node" parent="."]
 
-[node name="Cafe" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_ygixk")]
+[node name="Cafe" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_kguig")]
 position = Vector2(20, 31)
+collision_layer = 1
+collision_mask = 1
 spawn_point = NodePath("SpawnPoint")
 target_scene_path = "cafe"
 target_door = "Outside"

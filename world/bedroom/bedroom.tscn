@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://crglpnbsu533n"]
 
-[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="1_l54j5"]
+[ext_resource type="PackedScene" uid="uid://d3vbhqaynt8gt" path="res://world/transition_tile.tscn" id="1_p0exj"]
 
 [node name="Bedroom" type="Node2D"]
 
 [node name="TransitionTiles" type="Node" parent="."]
 
-[node name="Cafe" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_l54j5")]
+[node name="Cafe" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_p0exj")]
 spawn_point = NodePath("Marker2D")
 target_scene_path = "cafe"
 target_door = "Bedroom"
