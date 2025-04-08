@@ -11,10 +11,13 @@ func goto_scene(path: String, spawn_point = null) -> void:
 	__deferred_goto_scene.call_deferred(path, spawn_point)
 
 func __deferred_goto_scene(path: String, spawn_target) -> void:
+	if spawn_target != null:
+		Log.d("Changing scene to from '%s' to '%s' at '%s'" % [current_scene.name, path, spawn_target])
+	else: 
+		Log.d("Changing scene to from '%s' to '%s'" % [current_scene.name, path])
 	current_scene.remove_child(Globals.player)
 	current_scene.remove_child(Globals.camera)
 	current_scene.free()
-	print(path)
 	var s = ResourceLoader.load(path)
 	current_scene = s.instantiate()
 	current_scene.add_child(Globals.player)
