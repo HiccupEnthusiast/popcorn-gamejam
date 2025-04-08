@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0dt11fit4ref"]
 
 [ext_resource type="Script" uid="uid://ff54y2ntnb07" path="res://world/transition_tile.gd" id="1_kguig"]
-[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/transition_tile.tres" id="2_6aqka"]
+[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/default_tile_collision.tres" id="2_6aqka"]
 
 [node name="Outside" type="Node2D"]
 

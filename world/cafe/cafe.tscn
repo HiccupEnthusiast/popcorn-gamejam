@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://c1k8m8iqj1vh8"]
+[gd_scene load_steps=10 format=4 uid="uid://c1k8m8iqj1vh8"]
 
 [ext_resource type="Script" uid="uid://c0bf02vryle73" path="res://world/cafe/cafe.gd" id="1_tmwni"]
 [ext_resource type="Texture2D" uid="uid://8kef4u63d0wd" path="res://test_tileset.png" id="2_mn5dy"]
 [ext_resource type="Texture2D" uid="uid://pp1mmy2wc1ln" path="res://icon.svg" id="3_bdbv1"]
-[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/transition_tile.tres" id="5_bdbv1"]
+[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/default_tile_collision.tres" id="5_bdbv1"]
 [ext_resource type="Script" uid="uid://ff54y2ntnb07" path="res://world/transition_tile.gd" id="5_mn5dy"]
+[ext_resource type="Script" uid="uid://dp6ypqoklbgh1" path="res://world/toggle_scene_tile.gd" id="6_bl80b"]
+[ext_resource type="PackedScene" uid="uid://cvotdxblqktb0" path="res://world/cafe/design.tscn" id="7_mgyay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jdbho"]
 texture = ExtResource("2_mn5dy")
@@ -56,3 +58,12 @@ metadata/_custom_type_script = "uid://ff54y2ntnb07"
 shape = ExtResource("5_bdbv1")
 
 [node name="Marker2D" type="Marker2D" parent="TransitionTiles/Bedroom"]
+
+[node name="ToggleSceneTile" type="Area2D" parent="."]
+position = Vector2(220, 112)
+script = ExtResource("6_bl80b")
+scene = ExtResource("7_mgyay")
+metadata/_custom_type_script = "uid://dp6ypqoklbgh1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToggleSceneTile"]
+shape = ExtResource("5_bdbv1")
