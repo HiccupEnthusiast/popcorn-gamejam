@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://5rohds8ktg5b" path="res://world/cafe/design.gd" id="1_53nhl"]
 
-[node name="Design" type="CanvasLayer"]
+[node name="Design" type="CanvasLayer" node_paths=PackedStringArray("available_contatiner", "selected_container", "drink_name", "done_button")]
 script = ExtResource("1_53nhl")
+available_contatiner = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right/AvailableContainer")
+selected_container = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left/SelectedContainer")
+drink_name = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/LineEdit")
+done_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -37,10 +41,10 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left"]
+[node name="SelectedContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left/SelectedContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Selected Ingredients"
@@ -50,10 +54,10 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right"]
+[node name="AvailableContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right/AvailableContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Available Ingredients"

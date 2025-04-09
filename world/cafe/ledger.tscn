@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://mh0dbjojcm6" path="res://world/cafe/ledger.gd" id="1_3cvog"]
 
-[node name="Ledger" type="CanvasLayer"]
+[node name="Ledger" type="CanvasLayer" node_paths=PackedStringArray("close_button", "recipes_label")]
 script = ExtResource("1_3cvog")
+close_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/Button")
+recipes_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/RecipesLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
