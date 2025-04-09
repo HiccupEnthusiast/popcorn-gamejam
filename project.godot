@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneSwticher="*res://globals/scene_swticher.gd"
 Globals="*res://globals/globals.gd"
+Log="*res://globals/log.gd"
 
 [display]
 
@@ -64,6 +65,13 @@ confirm={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="PlayerBody"
+2d_physics/layer_2="PlayerHurtbox"
+2d_physics/layer_3="PlayerInteraction"
+2d_physics/layer_5="CustomerBody"
 
 [rendering]
 

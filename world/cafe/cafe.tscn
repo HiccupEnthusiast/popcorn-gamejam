@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=4 uid="uid://c1k8m8iqj1vh8"]
+
+[ext_resource type="Script" uid="uid://c0bf02vryle73" path="res://world/cafe/cafe.gd" id="1_tmwni"]
+[ext_resource type="Texture2D" uid="uid://8kef4u63d0wd" path="res://test_tileset.png" id="2_mn5dy"]
+[ext_resource type="Texture2D" uid="uid://pp1mmy2wc1ln" path="res://icon.svg" id="3_bdbv1"]
+[ext_resource type="Shape2D" uid="uid://ueeikcopnnva" path="res://world/default_tile_collision.tres" id="5_bdbv1"]
+[ext_resource type="Script" uid="uid://ff54y2ntnb07" path="res://world/transition_tile.gd" id="5_mn5dy"]
+[ext_resource type="Script" uid="uid://dp6ypqoklbgh1" path="res://world/toggle_scene_tile.gd" id="6_bl80b"]
+[ext_resource type="PackedScene" uid="uid://cvotdxblqktb0" path="res://world/cafe/design.tscn" id="7_mgyay"]
+[ext_resource type="Script" uid="uid://bvhxo3xn3kr81" path="res://world/cafe/customer_door.gd" id="8_mgyay"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jdbho"]
+texture = ExtResource("2_mn5dy")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_oj7sa"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_jdbho")
+
+[node name="Cafe" type="Node2D" node_paths=PackedStringArray("build_button", "ledger_button")]
+script = ExtResource("1_tmwni")
+build_button = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Build")
+ledger_button = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Ledger")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wUAAAABAAAAAAD//wQAAAABAAAAAAD//wMAAAABAAAAAAD//wIAAAABAAAAAAD//wEAAAABAAAAAAD//wAAAAABAAAAAAD/////AAABAAAAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAGAP//AAABAAAAAAAHAP//AAABAAAAAAAIAP//AAABAAAAAAAJAP//AAABAAAAAAAKAP//AAABAAAAAAALAP//AAABAAAAAAAMAP//AAABAAAAAAANAP//AAABAAAAAAANAAAAAAABAAAAAAANAAEAAAABAAAAAAANAAIAAAABAAAAAAANAAMAAAABAAAAAAANAAQAAAABAAAAAAANAAUAAAABAAAAAAANAAYAAAABAAAAAAAGAAYAAAABAAAAAAD//wYAAAABAAAAAAAAAAYAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAHAAYAAAABAAAAAAAIAAYAAAABAAAAAAAJAAYAAAABAAAAAAAKAAYAAAABAAAAAAALAAYAAAABAAAAAAAMAAYAAAABAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAD//wcAAAABAAAAAAD//wgAAAABAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAD//wsAAAABAAAAAAAAAAsAAAABAAAAAAABAAsAAAABAAAAAAACAAsAAAABAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAADAAsAAAABAAAAAAAEAAsAAAABAAAAAAAFAAsAAAABAAAAAAAGAAsAAAABAAAAAAAGAAcAAAABAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAABAAAAAAAGAAoAAAABAAAAAAD//wkAAAABAAAAAAD//woAAAABAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAsAAAABAAAAAAAIAAsAAAABAAAAAAAJAAsAAAABAAAAAAAJAAoAAAABAAAAAAAJAAkAAAABAAAAAAAJAAgAAAABAAAAAAAJAAcAAAABAAAAAAAHAAgAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_oj7sa")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(278, 110)
+texture = ExtResource("3_bdbv1")
+
+[node name="TransitionTiles" type="Node" parent="."]
+
+[node name="Outside" type="Area2D" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point")]
+position = Vector2(78, 335)
+script = ExtResource("5_mn5dy")
+spawn_point = NodePath("Marker2D")
+target_scene_path = "outside"
+target_door = "Cafe"
+metadata/_custom_type_script = "uid://ff54y2ntnb07"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionTiles/Outside"]
+shape = ExtResource("5_bdbv1")
+
+[node name="Marker2D" type="Marker2D" parent="TransitionTiles/Outside"]
+
+[node name="Bedroom" type="Area2D" parent="TransitionTiles" node_paths=PackedStringArray("spawn_point")]
+position = Vector2(258, 240)
+script = ExtResource("5_mn5dy")
+spawn_point = NodePath("Marker2D")
+target_scene_path = "bedroom"
+target_door = "Cafe"
+metadata/_custom_type_script = "uid://ff54y2ntnb07"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionTiles/Bedroom"]
+shape = ExtResource("5_bdbv1")
+
+[node name="Marker2D" type="Marker2D" parent="TransitionTiles/Bedroom"]
+
+[node name="ToggleSceneTile" type="Area2D" parent="."]
+position = Vector2(220, 112)
+script = ExtResource("6_bl80b")
+scene = ExtResource("7_mgyay")
+metadata/_custom_type_script = "uid://dp6ypqoklbgh1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToggleSceneTile"]
+shape = ExtResource("5_bdbv1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Build" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Build Mode"
+
+[node name="Ledger" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ledger"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CustomerDoor" type="Node2D" parent="." node_paths=PackedStringArray("spawner_timer", "spawn_point")]
+position = Vector2(130, 0)
+script = ExtResource("8_mgyay")
+spawner_timer = NodePath("../Timer")
+spawn_point = NodePath("Marker2D")
+metadata/_custom_type_script = "uid://bvhxo3xn3kr81"
+
+[node name="Marker2D" type="Marker2D" parent="CustomerDoor"]
+position = Vector2(0, 6)

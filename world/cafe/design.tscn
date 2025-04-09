@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvotdxblqktb0"]
+
+[ext_resource type="Script" uid="uid://5rohds8ktg5b" path="res://world/cafe/design.gd" id="1_53nhl"]
+
+[node name="Design" type="CanvasLayer" node_paths=PackedStringArray("available_contatiner", "selected_container", "drink_name", "done_button")]
+script = ExtResource("1_53nhl")
+available_contatiner = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right/AvailableContainer")
+selected_container = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left/SelectedContainer")
+drink_name = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/LineEdit")
+done_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VSplitContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VSplitContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectedContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left/SelectedContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Selected Ingredients"
+horizontal_alignment = 1
+
+[node name="Right" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AvailableContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Right/AvailableContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Available Ingredients"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+placeholder_text = "Name of drink"
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+text = "Done"
