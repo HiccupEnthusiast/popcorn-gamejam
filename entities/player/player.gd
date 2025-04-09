@@ -33,4 +33,3 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("confirm") and interaction_spots.size() > 0:
 		interaction_spots[-1]._interact()
-

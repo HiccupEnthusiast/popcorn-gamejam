@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c1k8m8iqj1vh8"]
+[gd_scene load_steps=11 format=4 uid="uid://c1k8m8iqj1vh8"]
 
 [ext_resource type="Script" uid="uid://c0bf02vryle73" path="res://world/cafe/cafe.gd" id="1_tmwni"]
 [ext_resource type="Texture2D" uid="uid://8kef4u63d0wd" path="res://test_tileset.png" id="2_mn5dy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ff54y2ntnb07" path="res://world/transition_tile.gd" id="5_mn5dy"]
 [ext_resource type="Script" uid="uid://dp6ypqoklbgh1" path="res://world/toggle_scene_tile.gd" id="6_bl80b"]
 [ext_resource type="PackedScene" uid="uid://cvotdxblqktb0" path="res://world/cafe/design.tscn" id="7_mgyay"]
+[ext_resource type="Script" uid="uid://bvhxo3xn3kr81" path="res://world/cafe/customer_door.gd" id="8_mgyay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jdbho"]
 texture = ExtResource("2_mn5dy")
@@ -94,3 +95,16 @@ text = "Build Mode"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ledger"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CustomerDoor" type="Node2D" parent="." node_paths=PackedStringArray("spawner_timer", "spawn_point")]
+position = Vector2(130, 0)
+script = ExtResource("8_mgyay")
+spawner_timer = NodePath("../Timer")
+spawn_point = NodePath("Marker2D")
+metadata/_custom_type_script = "uid://bvhxo3xn3kr81"
+
+[node name="Marker2D" type="Marker2D" parent="CustomerDoor"]
+position = Vector2(0, 6)
