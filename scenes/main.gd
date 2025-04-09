@@ -2,6 +2,7 @@ extends Node2D
 
 const INVENTORY = preload("res://world/cafe/inventory.tres")
 const COMMON_BEAN = preload("res://world/cafe/ingredients/common_bean.tres")
+const DARK_CHOCOLATE = preload("res://world/cafe/ingredients/dark_chocolate.tres")
 
 func _ready() -> void:
 	Globals.player = $Player
@@ -9,5 +10,6 @@ func _ready() -> void:
 	Globals.inventory = INVENTORY
 
 	Globals.inventory.add_item(COMMON_BEAN)
+	Globals.inventory.add_item(DARK_CHOCOLATE)
 
 	SceneSwticher.goto_scene("res://world/cafe/cafe.tscn")

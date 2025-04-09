@@ -26,10 +26,10 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VSplitContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
+[node name="HSplitContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -58,6 +58,10 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "Available Ingredients"
 horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+placeholder_text = "Name of drink"
 
 [node name="Button" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VSplitContainer"]
 layout_mode = 2
