@@ -41,6 +41,7 @@ func _ready() -> void:
 		button.text = entry.item.name
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(func():
+			drink_name.grab_focus()
 			if selected_items.has(entry.item.name):
 				selected_items[entry.item.name].add()
 			else:
@@ -50,16 +51,23 @@ func _ready() -> void:
 				nb.button.pressed.connect(func():
 					if nb.sub():
 						selected_items.erase(nb.ingredient.name)
+					drink_name.grab_focus()
 					)
 
 			)
 		available_contatiner.add_child(button)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("move_up") or \
+	if Input.is_action_pressed("ui_cancel"):
+		if drink_name.has_focus():
+			drink_name.release_focus()
+		else:
+			queue_free()
+	if (Input.is_action_pressed("move_up") or \
 	Input.is_action_pressed("move_down") or \
 	Input.is_action_pressed("move_left") or \
-	Input.is_action_pressed("move_right"):
+	Input.is_action_pressed("move_right")) and \
+	!drink_name.has_focus():
 		queue_free()
 	if Input.is_action_pressed("confirm"):
 		get_viewport().set_input_as_handled()
