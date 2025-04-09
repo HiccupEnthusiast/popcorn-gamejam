@@ -31,7 +31,6 @@ class InventoryItemButton:
 @onready var selected_container: VBoxContainer = $MarginContainer/PanelContainer/MarginContainer/VSplitContainer/HSplitContainer/Left/VBoxContainer
 @onready var drink_name: LineEdit = $MarginContainer/PanelContainer/MarginContainer/VSplitContainer/LineEdit
 @onready var done_button: Button = $MarginContainer/PanelContainer/MarginContainer/VSplitContainer/Button
-
 var selected_items: Dictionary[String, InventoryItemButton]
 
 func _ready() -> void:
