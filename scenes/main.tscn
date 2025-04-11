@@ -15,6 +15,7 @@ radius = 18.0
 script = ExtResource("1_qy63d")
 
 [node name="Player" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("2_l8qe7")
 metadata/_custom_type_script = "uid://bhb74xk58ssv2"
 
