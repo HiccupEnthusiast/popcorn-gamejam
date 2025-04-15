@@ -10,6 +10,7 @@ const BUILD_UI_SCENE = preload("res://world/cafe/build_mode_ui.tscn")
 @export var ledger_button: Button
 
 func _ready() -> void:
+	Globals.player.in_attack_zone = false
 	var pos: Array[Vector2]
 
 	var tile_map: TileMapLayer = $TileMapLayer
