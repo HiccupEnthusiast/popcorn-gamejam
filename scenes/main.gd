@@ -8,9 +8,9 @@ func _ready() -> void:
 	Globals.player = $Player
 	Globals.camera = $PlayerCamera
 	Globals.inventory = INVENTORY
-	Log.current_level = Log.Level.DEBUG
+	#Log.current_level = Log.Level.DEBUG
 
 	Globals.inventory.add_item(COMMON_BEAN)
 	Globals.inventory.add_item(DARK_CHOCOLATE)
 
-	SceneSwticher.goto_scene("res://world/outside/outside.tscn")
+	SceneSwticher.goto_scene("res://world/cafe/cafe.tscn")

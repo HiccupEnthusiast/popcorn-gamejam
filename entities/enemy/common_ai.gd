@@ -1,4 +1,4 @@
-class_name CommonAi extends StateMachine
+class_name CommonAi extends EnemyStateMachine
 
 func _try_transition(_delta: float):
 	match current_state:

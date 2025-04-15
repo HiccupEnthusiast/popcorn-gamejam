@@ -1,4 +1,4 @@
-class_name StateMachine extends Resource
+class_name EnemyStateMachine extends Resource
 
 enum State {
 	Idle,

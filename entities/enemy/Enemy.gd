@@ -2,7 +2,7 @@ class_name Enemy extends Aggresor
 
 const ATTACK = preload("res://entities/enemy/melee_attack.tscn")
 
-@export var state_machine: StateMachine
+@export var state_machine: EnemyStateMachine
 
 @onready var detection_area: Area2D = $Body/DetectionArea
 var target: Player 
