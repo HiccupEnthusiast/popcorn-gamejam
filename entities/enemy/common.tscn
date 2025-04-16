@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://csdh61tf1ssuj"]
+
+[ext_resource type="Script" uid="uid://c8utfv2e5fom4" path="res://entities/enemy/Enemy.gd" id="1_bgj3y"]
+[ext_resource type="Script" uid="uid://dgo472b5i05nw" path="res://entities/enemy/common_ai.gd" id="2_vac36"]
+[ext_resource type="Script" uid="uid://ck584eomyp51e" path="res://entities/attack/Attack.gd" id="2_xsgft"]
+[ext_resource type="Script" uid="uid://dcwowgj18me85" path="res://entities/entity_stats.gd" id="4_xr46l"]
+
+[sub_resource type="Resource" id="Resource_xr46l"]
+script = ExtResource("2_vac36")
+current_state = 0
+metadata/_custom_type_script = "uid://dgo472b5i05nw"
+
+[sub_resource type="Resource" id="Resource_vac36"]
+script = ExtResource("2_xsgft")
+damage = 0.0
+cooldown = 0.5
+metadata/_custom_type_script = "uid://ck584eomyp51e"
+
+[sub_resource type="Resource" id="Resource_hxev8"]
+script = ExtResource("4_xr46l")
+max_health = 3.0
+health = 3.0
+metadata/_custom_type_script = "uid://dcwowgj18me85"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_236wr"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xsgft"]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vac36"]
+radius = 8.0
+
+[node name="Common" type="Node2D"]
+script = ExtResource("1_bgj3y")
+state_machine = SubResource("Resource_xr46l")
+attack = SubResource("Resource_vac36")
+stats = SubResource("Resource_hxev8")
+metadata/_custom_type_script = "uid://c8utfv2e5fom4"
+
+[node name="Body" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CircleShape2D_236wr")
+
+[node name="DetectionArea" type="Area2D" parent="Body"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/DetectionArea"]
+shape = SubResource("CircleShape2D_xsgft")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Body"]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
+shape = SubResource("CircleShape2D_vac36")
+debug_color = Color(0.870989, 0.207674, 0.698203, 0.42)

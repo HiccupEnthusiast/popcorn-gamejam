@@ -1,37 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxjixd1nkumg2"]
+[gd_scene load_steps=4 format=3 uid="uid://dxjixd1nkumg2"]
 
 [ext_resource type="Script" uid="uid://bsmjpxkcw27ew" path="res://scenes/main.gd" id="1_qy63d"]
-[ext_resource type="Script" uid="uid://bhb74xk58ssv2" path="res://entities/player/player.gd" id="2_l8qe7"]
-[ext_resource type="Texture2D" uid="uid://wag3ryye0ebs" path="res://test_circ.png" id="3_ifaiv"]
+[ext_resource type="PackedScene" uid="uid://m7vangphuhsq" path="res://entities/player/player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://7wu7duhhhx3x" path="res://entities/player/camera.gd" id="3_m1504"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_l8qe7"]
-radius = 8.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jyhfs"]
-radius = 18.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qy63d")
 
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource("2_l8qe7")
-metadata/_custom_type_script = "uid://bhb74xk58ssv2"
-
-[node name="Body" type="CharacterBody2D" parent="Player"]
-
-[node name="Icon" type="Sprite2D" parent="Player/Body"]
-texture = ExtResource("3_ifaiv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Body"]
-shape = SubResource("CircleShape2D_l8qe7")
-
-[node name="InteractionArea" type="Area2D" parent="Player/Body"]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Body/InteractionArea"]
-shape = SubResource("CircleShape2D_jyhfs")
+[node name="Player" parent="." instance=ExtResource("2_sugp2")]
 
 [node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_m1504")

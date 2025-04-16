@@ -3,14 +3,18 @@
 [ext_resource type="Script" uid="uid://dptmsp6eubic4" path="res://entities/customer/customer.gd" id="1_erets"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dhnu5"]
-radius = 16.0
+radius = 4.0
 
 [node name="Customer" type="Node2D"]
 script = ExtResource("1_erets")
 metadata/_custom_type_script = "uid://dptmsp6eubic4"
 
 [node name="Body" type="CharacterBody2D" parent="."]
-collision_layer = 16
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 shape = SubResource("CircleShape2D_dhnu5")
+
+[node name="Path" type="Line2D" parent="."]
+width = 2.0
+default_color = Color(0.220332, 0.735939, 0.608153, 1)

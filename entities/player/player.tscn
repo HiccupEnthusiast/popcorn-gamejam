@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://m7vangphuhsq"]
+
+[ext_resource type="Script" uid="uid://bhb74xk58ssv2" path="res://entities/player/player.gd" id="1_sglur"]
+[ext_resource type="Script" uid="uid://ck584eomyp51e" path="res://entities/attack/Attack.gd" id="2_bls4j"]
+[ext_resource type="Texture2D" uid="uid://wag3ryye0ebs" path="res://test_circ.png" id="3_fkugw"]
+[ext_resource type="Shape2D" uid="uid://bybpkkduc6jgt" path="res://entities/player/hurtbox.tres" id="4_bls4j"]
+
+[sub_resource type="Resource" id="Resource_tefeu"]
+script = ExtResource("2_bls4j")
+damage = 1.0
+cooldown = 0.5
+metadata/_custom_type_script = "uid://ck584eomyp51e"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8qe7"]
+radius = 4.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_sglur")
+attack = SubResource("Resource_tefeu")
+metadata/_custom_type_script = "uid://bhb74xk58ssv2"
+
+[node name="Body" type="CharacterBody2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="Body"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_fkugw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CircleShape2D_l8qe7")
+
+[node name="InteractionArea" type="Area2D" parent="Body"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/InteractionArea"]
+shape = ExtResource("4_bls4j")
+
+[node name="HurtBox" type="Area2D" parent="Body"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/HurtBox"]
+shape = ExtResource("4_bls4j")
