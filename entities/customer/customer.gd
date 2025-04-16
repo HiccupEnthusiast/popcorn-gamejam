@@ -1,6 +1,8 @@
 class_name Customer extends Entity
 
 var state_machine: CustomerStateMachine = CustomerStateMachine.new()
+@export var customer_info: CustomerInfo
+
 var last_point: Vector2
 var objective: Vector2
 var exit_point: Vector2: 
@@ -24,6 +26,11 @@ func _ready() -> void:
 	# Remove warn of not being used, it is being used by the state machine
 	# Maybe moving the signal to the state machine is better
 	var _ignore = request_path
+	if customer_info == null:
+		customer_info = CustomerInfo.random()
+		if customer_info == null:
+			Log.e("Couldn't generate new customer info, cancelling customer creation")
+			queue_free()
 	state_machine.customer = self
 
 func _physics_process(delta: float) -> void:

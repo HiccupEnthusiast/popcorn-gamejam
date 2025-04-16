@@ -2,6 +2,7 @@ class_name Aggresor extends Entity
 
 var in_attack_zone: bool = false
 @export var attack: AttackStats
+@export var stats: AggressorStats
 
 var attack_timer: Timer
 var in_cooldown: bool

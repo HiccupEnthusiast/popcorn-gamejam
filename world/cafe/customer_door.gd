@@ -4,6 +4,7 @@ const CUSTOMER_SCENE = preload("res://entities/customer/customer.tscn")
 
 @export var spawner_timer: Timer
 @export var spawn_point: Node2D
+@export var capacity: int = 1
 
 var valid_spots: Array[Vector2]
 var grid: AStarGrid2D
@@ -12,6 +13,7 @@ func _ready():
 	spawner_timer.timeout.connect(_spawn_customer)
 
 func _spawn_customer():
+	if !Globals.can_spawn_customer() or Globals.active_customers.size() >= capacity: return
 	var customer = CUSTOMER_SCENE.instantiate()
 	customer.objective = valid_spots[randi() % valid_spots.size()]
 	customer.exit_point = spawn_point.global_position

@@ -51,6 +51,7 @@ func _while_walking(delta: float) -> void:
 	customer.move()
 
 func _while_exit(_delta: float) -> void:
+	Globals.deactive_customer(customer.customer_info)
 	customer.queue_free()
 
 
