@@ -9,6 +9,7 @@ var available_customers: Array[CustomerInfo] = []
 var active_customers: Array[CustomerInfo] = []
 
 const TRAITS = ["patient", "kind", "sweettooth"]
+const PROPERTIES = ["Bitter", "Sweet", "Sour", "Spicy", "Salty", "Fullfulling"]
 
 func can_spawn_customer() -> bool:
 	return available_customers.size() > 0 or available_names.size() > 0
@@ -19,6 +20,7 @@ func new_customer() -> CustomerInfo:
 	if _name == null: return null
 	info.name = _name
 	info.traits = get_random_traits()
+	info.preferences = get_random_preferences()
 	available_customers.append(info)
 	Log.i("New customer: %s" % info.repr())
 	return info
@@ -60,3 +62,17 @@ func get_random_traits() -> PackedStringArray:
 	for i in range(keys.size()):
 		res[i] = keys[i]
 	return res
+
+func get_random_preferences() -> Dictionary:
+	var preferences: Dictionary[String, int] = {}
+	var num = randi_range(1, 3)
+
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var low = round(rng.randfn(3, 1.5)) as int
+	var high = round(rng.randfn(7, 1.5)) as int
+
+	for i in range(num):
+		var idx = randi() % PROPERTIES.size()
+		preferences[PROPERTIES[idx]] = low if randf() < 0.5 else high
+	return preferences

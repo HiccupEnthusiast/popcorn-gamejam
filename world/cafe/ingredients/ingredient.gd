@@ -10,4 +10,4 @@ enum Usage {
 
 @export var name: String
 @export_flags("Vegetable", "Fruit", "Meat", "Drink", "Sweet") var usage: int 
-
+@export var properties: Dictionary[String, float]

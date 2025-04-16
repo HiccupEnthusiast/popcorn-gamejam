@@ -531,6 +531,7 @@ position = Vector2(130, 0)
 script = ExtResource("8_mgyay")
 spawner_timer = NodePath("../Timer")
 spawn_point = NodePath("Marker2D")
+capacity = 6
 metadata/_custom_type_script = "uid://bvhxo3xn3kr81"
 
 [node name="Marker2D" type="Marker2D" parent="CustomerDoor"]

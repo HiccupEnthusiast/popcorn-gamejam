@@ -6,4 +6,8 @@
 script = ExtResource("1_d6jal")
 name = "Dark Chocolate"
 usage = 24
+properties = Dictionary[String, float]({
+"Bitter": 0.5,
+"Sweet": 5.0
+})
 metadata/_custom_type_script = "uid://coaeor7wmsq2u"

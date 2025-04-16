@@ -2,6 +2,7 @@ class_name Customer extends Entity
 
 var state_machine: CustomerStateMachine = CustomerStateMachine.new()
 @export var customer_info: CustomerInfo
+var wants: Dictionary[String, int] 
 
 var last_point: Vector2
 var objective: Vector2
@@ -31,6 +32,37 @@ func _ready() -> void:
 		if customer_info == null:
 			Log.e("Couldn't generate new customer info, cancelling customer creation")
 			queue_free()
+
+	var num_wants = 1
+	num_wants += 0 if randf() < 0.65 else 1
+	num_wants += 0 if randf() < 0.1 else 1
+
+	Log.i("Attempting to spawn customer %s with %d wants" % [customer_info.name, num_wants])
+
+	var rng = RandomNumberGenerator.new()
+	for i in range(num_wants):
+		var factor = randi_range(1, 20)
+		var found_valid = false
+		var prop
+		var tries = 0
+		while not found_valid:
+			var use_preferences = randf() < 0.8
+			if use_preferences:
+				var props = customer_info.preferences.keys()
+				var raw_weights = customer_info.preferences.values()
+				var weights = PackedFloat32Array(raw_weights)
+				var idx = rng.rand_weighted(weights)
+				prop = props[idx]
+			else:
+				var idx = rng.randi_range(0, Globals.PROPERTIES.size() - 1)
+				prop = Globals.PROPERTIES[idx]
+
+			if not prop in wants or tries > 10:
+				found_valid = true
+			tries += 1
+
+		wants[prop] = factor * 25
+	Log.i("Actual wants: %s" % wants)
 	state_machine.customer = self
 
 func _physics_process(delta: float) -> void:
