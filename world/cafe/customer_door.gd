@@ -15,7 +15,11 @@ func _ready():
 func _spawn_customer():
 	if !Globals.can_spawn_customer() or Globals.active_customers.size() >= capacity: return
 	var customer = CUSTOMER_SCENE.instantiate()
-	customer.objective = valid_spots[randi() % valid_spots.size()]
+	var objectives = PackedVector2Array()
+	objectives.append(valid_spots[randi() % valid_spots.size()] / 16 * 16 + Vector2(8, 8))
+	objectives.append(valid_spots[randi() % valid_spots.size()] / 16 * 16 + Vector2(8, 8))
+	objectives.append(spawn_point.global_position / 16 * 16 + Vector2(8, 8))
+	customer.objectives = objectives
 	customer.exit_point = spawn_point.global_position
 	customer.request_path.connect(func(): _give_path(customer))
 	owner.add_child(customer)
@@ -23,8 +27,14 @@ func _spawn_customer():
 	customer.request_path.emit()
 
 func _give_path(customer: Customer):
-	var path = grid.get_point_path(customer.body.global_position / 16, customer.objective / 16)
+	var path = grid.get_point_path(customer.body.global_position / 16, customer.objectives[0] / 16)
+	if path.is_empty():
+		if customer.objectives.size() > 1:
+			Log.e("Customer %s has an unreachable exit, deleting" % customer.customer_info.name)
+			customer.remove()
+		else:
+			Log.w("Customer %s has an unreachable objective, skipping it" % customer.customer_info.name)
+			customer.objectives.remove_at(0)
 	for i in range(path.size()):
 		path[i] = path[i] + Vector2(8, 8)
 	customer.path = path 
-	pass

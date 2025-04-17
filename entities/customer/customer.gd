@@ -5,7 +5,7 @@ var state_machine: CustomerStateMachine = CustomerStateMachine.new()
 var wants: Dictionary[String, int] 
 
 var last_point: Vector2
-var objective: Vector2
+var objectives: PackedVector2Array 
 var exit_point: Vector2: 
 	get: return exit_point
 	set(value): 
@@ -19,7 +19,7 @@ var exit_point: Vector2:
 
 var exited_spawn: bool = false
 var path: PackedVector2Array 
-var speed: float = 50.0
+var speed: float = 250.0
 
 signal request_path()
 
@@ -66,8 +66,16 @@ func _ready() -> void:
 	state_machine.customer = self
 
 func _physics_process(delta: float) -> void:
+	var points = PackedVector2Array()
+	points.append(body.global_position)
+	points.append_array(path)
+	$Path.points = points
 	state_machine.state_routine(delta)
 
 func move() -> void:
-	body.velocity = body.global_position.direction_to(objective) * speed
+	body.velocity = body.global_position.direction_to(path[0]) * speed
 	body.move_and_slide()
+
+func remove() -> void:
+	Globals.deactive_customer(customer_info)
+	queue_free()
